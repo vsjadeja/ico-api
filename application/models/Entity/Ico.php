@@ -39,7 +39,7 @@ class Ico {
     /**
      * @var string
      *
-     * @ORM\Column(name="short_decription", type="string", length=255, nullable=false)
+     * @ORM\Column(name="short_decription", type="text", nullable=false)
      */
     private $shortDecription;
 

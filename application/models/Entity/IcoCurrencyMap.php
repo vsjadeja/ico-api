@@ -60,7 +60,7 @@ class IcoCurrencyMap {
     /**
      * @var \Ico
      *
-     * @ORM\ManyToOne(targetEntity="Ico")
+     * @ORM\ManyToOne(targetEntity="Ico", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="ico_id", referencedColumnName="id")
      * })
@@ -70,7 +70,7 @@ class IcoCurrencyMap {
     /**
      * @var \Currency
      *
-     * @ORM\ManyToOne(targetEntity="Currency")
+     * @ORM\ManyToOne(targetEntity="Currency", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="currency_id", referencedColumnName="id")
      * })

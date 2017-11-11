@@ -201,9 +201,9 @@ class Doctrine {
 
     private function getHideColumns() {
         return array(
-            //'status',
-            //'createdBy',
-            //'createdDate',
+            'status',
+            'createdBy',
+            'createdDate',
             'updatedBy',
             'updatedDate',
             'password'
@@ -212,10 +212,8 @@ class Doctrine {
 
     private function getImageColumns() {
         return array(
-            'dp',
             'thumb',
-            'logoUrl',
-            'textImageUrl'
+            'icon'
         );
     }
 

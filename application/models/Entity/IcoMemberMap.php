@@ -60,7 +60,7 @@ class IcoMemberMap {
     /**
      * @var \Member
      *
-     * @ORM\ManyToOne(targetEntity="Member")
+     * @ORM\ManyToOne(targetEntity="Member", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="member_id", referencedColumnName="id")
      * })
@@ -70,7 +70,7 @@ class IcoMemberMap {
     /**
      * @var \Ico
      *
-     * @ORM\ManyToOne(targetEntity="Ico")
+     * @ORM\ManyToOne(targetEntity="Ico", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="ico_id", referencedColumnName="id")
      * })
