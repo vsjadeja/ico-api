@@ -1,0 +1,248 @@
+<?php
+
+namespace Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * IcoCurrencyMap
+ *
+ * @ORM\Table(name="ico_currency_map")
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
+ */
+class IcoCurrencyMap {
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="created_by", type="integer", nullable=true)
+     */
+    private $createdBy;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_date", type="datetime", nullable=false)
+     */
+    private $createdDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="updated_by", type="integer", nullable=true)
+     */
+    private $updatedBy;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_date", type="datetime", nullable=false)
+     */
+    private $updatedDate;
+
+    /**
+     * @var \Ico
+     *
+     * @ORM\ManyToOne(targetEntity="Ico")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ico_id", referencedColumnName="id")
+     * })
+     */
+    private $ico;
+
+    /**
+     * @var \Currency
+     *
+     * @ORM\ManyToOne(targetEntity="Currency")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="currency_id", referencedColumnName="id")
+     * })
+     */
+    private $currency;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * Set status
+     *
+     * @param boolean $status
+     * @return IcoCurrencyMap
+     */
+    public function setStatus($status) {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return boolean 
+     */
+    public function getStatus() {
+        return $this->status;
+    }
+
+    /**
+     * Set createdBy
+     *
+     * @param integer $createdBy
+     * @return IcoCurrencyMap
+     */
+    public function setCreatedBy($createdBy) {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return integer 
+     */
+    public function getCreatedBy() {
+        return $this->createdBy;
+    }
+
+    /**
+     * Set createdDate
+     *
+     * @param \DateTime $createdDate
+     * @return IcoCurrencyMap
+     */
+    public function setCreatedDate($createdDate) {
+        $this->createdDate = $createdDate;
+
+        return $this;
+    }
+
+    /**
+     * Get createdDate
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedDate() {
+        return $this->createdDate;
+    }
+
+    /**
+     * Set updatedBy
+     *
+     * @param integer $updatedBy
+     * @return IcoCurrencyMap
+     */
+    public function setUpdatedBy($updatedBy) {
+        $this->updatedBy = $updatedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedBy
+     *
+     * @return integer 
+     */
+    public function getUpdatedBy() {
+        return $this->updatedBy;
+    }
+
+    /**
+     * Set updatedDate
+     *
+     * @param \DateTime $updatedDate
+     * @return IcoCurrencyMap
+     */
+    public function setUpdatedDate($updatedDate) {
+        $this->updatedDate = $updatedDate;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedDate
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedDate() {
+        return $this->updatedDate;
+    }
+
+    /**
+     * Set ico
+     *
+     * @param \Ico $ico
+     * @return IcoCurrencyMap
+     */
+    public function setIco(\Entity\Ico $ico = null) {
+        $this->ico = $ico;
+
+        return $this;
+    }
+
+    /**
+     * Get ico
+     *
+     * @return \Ico 
+     */
+    public function getIco() {
+        return $this->ico;
+    }
+
+    /**
+     * Set currency
+     *
+     * @param \Currency $currency
+     * @return IcoCurrencyMap
+     */
+    public function setCurrency(\Entity\Currency $currency = null) {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Get currency
+     *
+     * @return \Currency 
+     */
+    public function getCurrency() {
+        return $this->currency;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function doStuffOnPrePersist() {
+        if ($this->id > 0):
+            $this->updatedDate = new \DateTime();
+        else:
+            $this->createdDate = new \DateTime();
+            $this->updatedDate = new \DateTime();
+        endif;
+    }
+
+}
